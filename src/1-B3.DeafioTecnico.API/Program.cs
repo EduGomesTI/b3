@@ -1,11 +1,21 @@
+using B3.DesafioTecnico.CrossCutting;
+
+#region Builder
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDependencyInjection();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+#endregion
+
+#region App
 
 var app = builder.Build();
 
@@ -23,3 +33,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+#endregion
