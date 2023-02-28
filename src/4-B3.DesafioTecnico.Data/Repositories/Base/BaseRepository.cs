@@ -2,6 +2,7 @@
 using B3.DesafioTecnico.Domain.Base.Entities;
 using B3.DesafioTecnico.Domain.Base.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace B3.DesafioTecnico.Data.Repositories.Base
 {
@@ -12,14 +13,16 @@ namespace B3.DesafioTecnico.Data.Repositories.Base
         #region Properties
 
         private readonly MySqlDbContext _context;
+        private readonly ILogger<BaseRepository<TEntity, TId>> _logger;
 
         #endregion
 
         #region Constructors
 
-        public BaseRepository(MySqlDbContext context)
+        public BaseRepository(MySqlDbContext context, ILogger<BaseRepository<TEntity, TId>> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         #endregion
@@ -30,7 +33,13 @@ namespace B3.DesafioTecnico.Data.Repositories.Base
         {
             await CreateSet().AddAsync(entity, cancellationToken);
 
-            await _context.SaveChangesAsync(cancellationToken);
+            var result = await _context.SaveChangesAsync(cancellationToken);
+
+
+            if(result == 0)
+            {                
+                entity.AddMessage("Erro: Objeto não persistido no banco de dados");
+            }                
 
             return entity;
         }
@@ -39,7 +48,10 @@ namespace B3.DesafioTecnico.Data.Repositories.Base
         {
             CreateSet().Remove(entity);
 
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            if(result == 0)      
+                _logger.LogWarning("Ocorreu um erro ao excluir o objeto no banco");               
         }
 
         public async Task<IEnumerable<TEntity>> FindAllAsync(CancellationToken cancellationToken)
@@ -56,7 +68,12 @@ namespace B3.DesafioTecnico.Data.Repositories.Base
         {
             _context.Entry(entity).State = EntityState.Modified;
 
-            await _context.SaveChangesAsync(cancellationToken);
+            var result = await _context.SaveChangesAsync(cancellationToken);
+
+            if(result == 0)
+            {
+                entity.AddMessage("Erro: Objeto não atualizado no banco de dados");
+            }
 
             return entity;
         }

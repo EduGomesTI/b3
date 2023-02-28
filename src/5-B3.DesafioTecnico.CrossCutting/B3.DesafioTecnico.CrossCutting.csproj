@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\2-B3.DesafioTecnico.Application\B3.DesafioTecnico.Application.csproj" />
     <ProjectReference Include="..\4-B3.DesafioTecnico.Data\B3.DesafioTecnico.Data.csproj" />
   </ItemGroup>
 

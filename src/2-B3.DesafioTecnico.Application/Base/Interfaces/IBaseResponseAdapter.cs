@@ -2,11 +2,9 @@
 using B3.DesafioTecnico.Domain.Base.Entities;
 
 namespace B3.DesafioTecnico.Application.Base.Interfaces;
-public interface IBaseAdapter<TEntity, TId, TRequest, TResponse>
+internal interface IBaseResponseAdapter<TEntity, TId, TResponse>
     where TEntity : BaseEntity<TId>
-    where TRequest : BaseRequest
-    where TResponse : BaseResponse {
-    TEntity Adapt(TRequest request);
-
+    where TResponse : BaseResponse 
+{
     TResponse Adapt(TEntity entity);
 }

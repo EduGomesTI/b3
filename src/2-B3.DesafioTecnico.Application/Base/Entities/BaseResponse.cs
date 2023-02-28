@@ -7,7 +7,7 @@ namespace B3.DesafioTecnico.Application.Base.Entities
 
         #region Properties
 
-        public bool Success { get; private set; }
+        public bool Success { get; protected set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public List<string> Messages { get; set; }

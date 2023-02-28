@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using B3.DesafioTecnico.Domain.Aggregates.ToDos.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace B3.DesafioTecnico.Data.Repositories.Base.MySql
 {
@@ -22,6 +23,7 @@ namespace B3.DesafioTecnico.Data.Repositories.Base.MySql
 
         #region DbSets
 
+        public virtual DbSet<ToDo> ToDos { get; set; }
 
         #endregion
 

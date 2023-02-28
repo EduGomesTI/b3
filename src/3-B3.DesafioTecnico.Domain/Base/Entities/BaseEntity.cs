@@ -10,12 +10,9 @@
 
         #endregion
 
-        #region Constructors
+        #region Constructors 
 
-        public BaseEntity()
-        {
-            Messages = new List<string>();
-        }
+        public BaseEntity() => Messages = new List<string>();
 
         #endregion
 

@@ -1,4 +1,8 @@
-﻿using B3.DesafioTecnico.Data.Repositories.Base.MySql;
+﻿using B3.DesafioTecnico.Application.ToDos.Interfaces;
+using B3.DesafioTecnico.Application.ToDos.Services;
+using B3.DesafioTecnico.Data.Repositories.Base.MySql;
+using B3.DesafioTecnico.Data.Repositories.ToDos;
+using B3.DesafioTecnico.Domain.Aggregates.ToDos.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +18,10 @@ namespace B3.DesafioTecnico.CrossCutting
             services.AddDbContext<MySqlDbContext>(options =>
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), 
                     m => m.MigrationsHistoryTable("Migration_History")));
+
+            services.AddTransient<IToDoService, ToDoService>();
+            services.AddTransient<IToDoRepository, ToDoRepository>();
+            
         }
     }
 }
