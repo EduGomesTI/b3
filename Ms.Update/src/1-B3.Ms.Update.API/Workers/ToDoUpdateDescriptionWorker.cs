@@ -58,7 +58,7 @@ public class ToDoUpdateDescriptionWorker : BackgroundService
             var contentString = Encoding.UTF8.GetString(contentArray);
             var message = JsonConvert.DeserializeObject<ToDoUpdateStatusRequest>(contentString);
        
-            _service.UpdateAsync(message, stoppingToken);
+            _service.Update(message, stoppingToken);
 
             _channel.BasicAck(eventArgs.DeliveryTag, false);
         };

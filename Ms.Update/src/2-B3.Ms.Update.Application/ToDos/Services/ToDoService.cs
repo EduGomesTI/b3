@@ -29,14 +29,14 @@ namespace B3.Ms.Update.Application.ToDos.Services
 
         #region Methods 
 
-        public void UpdateAsync(ToDoUpdateStatusRequest request, CancellationToken cancellationToken)
+        public void Update(ToDoUpdateStatusRequest request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Adapt request to object");
             var adapter = new ToDoUpdateAdapter();
             var toDo = adapter.Adapt(request);
 
             _logger.LogInformation("Call repository to update the task");
-            _repository.UpdateAsync(toDo, cancellationToken);
+            _repository.Update(toDo, cancellationToken);
 
             if(toDo.Messages.Count > 0)
                 throw new DatabaseUpdateInvalidException();           

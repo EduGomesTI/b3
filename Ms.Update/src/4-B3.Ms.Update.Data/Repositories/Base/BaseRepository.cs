@@ -30,7 +30,7 @@ namespace B3.Ms.Update.Data.Repositories.Base
 
         #region Methods
 
-        public void UpdateAsync(TEntity entity, CancellationToken cancellationToken)
+        public void Update(TEntity entity, CancellationToken cancellationToken)
         {
             _logger.LogInformation($"Change state of entity {entity.Id}");
             _context.Entry(entity).State = EntityState.Modified;
