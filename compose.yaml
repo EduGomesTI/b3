@@ -3,14 +3,14 @@ version: "3.9"
 volumes:
   mysql_vol:
   dbeaver_vol:
+  rabbitmq_data_vol:
+  rabbitmq_log_vol:
 
 
 networks:
   mysql_net:
-    ipam:
-      driver: default
-      config:
-        - subnet: "172.16.1.0/24"
+  rabbitmq_net:
+
 
 services:
   mysql:
@@ -20,8 +20,8 @@ services:
     volumes:
       - mysql_vol:/var/lib/mysql
     networks:
-      mysql_net:
-        ipv4_address: 172.16.1.10
+      - mysql_net
+    hostname: hostmysql
     environment:
       - MYSQL_ROOT_PASSWORD=1234
       - MYSQL_PASSWORD=1234
@@ -42,8 +42,20 @@ services:
     volumes:
       - dbeaver_vol:/opt/cloudbeaver/workspace
     networks:
-      mysql_net:
-        ipv4_address: 172.16.1.20
+      - mysql_net
     depends_on:
       mysql:
         condition: service_healthy
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    restart: always
+    hostname: hostrabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq_data_vol:/var/lib/rabbitmq/
+      - rabbitmq_log_vol:/var/log/rabbitmq
+    networks:
+      - rabbitmq_net
