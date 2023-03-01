@@ -11,5 +11,7 @@ public class ToDoUpdateStatusRequest : BaseRequest
 
     public DateTime CreateDate { get; set; }
 
+    public DateTime ConclusionDate { get; set; }
+
     public Status Status { get; set; }
 }

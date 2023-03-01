@@ -9,7 +9,7 @@ namespace B3.Ms.Update.Application.ToDos.Adapters
     {
         public ToDo Adapt(ToDoUpdateStatusRequest request)
         {
-            return new ToDo(request.Id, request.Description, request.CreateDate, request.Status);            
+            return new ToDo(request.Id, request.Description, request.CreateDate, request.ConclusionDate, request.Status);            
         }   
     }
 }

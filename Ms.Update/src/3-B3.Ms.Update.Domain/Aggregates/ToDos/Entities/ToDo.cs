@@ -41,11 +41,12 @@ namespace B3.Ms.Update.Domain.Aggregates.ToDos.Entities
             Status = Status.New;
         }
 
-        public ToDo(int id, string description, DateTime createDate, Status status)
+        public ToDo(int id, string description, DateTime createDate, DateTime conclusionDate, Status status)
         {
             Id = id;
             Description = description;
             CreateDate = createDate;
+            ConclusionDate = conclusionDate;
             Status = status;
         }
 
