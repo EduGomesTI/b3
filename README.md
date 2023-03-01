@@ -44,6 +44,7 @@ password: 1234
 
 ## Próximas Atividades
 
+- Testes unitários
 - Impedir que o status de uma tarefa retroceda.
 - Melhorar a alteração de status de tarefas.
 - Implementar a atualização da descrição de uma tarefa.
