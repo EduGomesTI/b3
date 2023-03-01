@@ -31,7 +31,7 @@ password: 1234
 
 ## Regras de Negócios
 
-- Ao adicionar uma nova tarefa inserimos a descrição e a data de inclusão é automática, bem com o status de nova tarefa.
+- Ao adicionar uma nova tarefa inserimos a descrição e a data de inclusão, bem com o status de nova tarefa são automáticas.
 - É permitido excluir uma tarefa.
 - Não é permitido modificar a descrição ou a data de uma tarefa.
 - A tarefa pode ter 4 status:
@@ -40,6 +40,7 @@ password: 1234
   - Em andamento
   - Finalizada
 - A alteração de status é feita por um microserviço próprio através de mensageria.
+- Ao finalizar uma tarefa a data de conclusão é gravada de forma automática.
 
 ## Próximas Atividades
 
