@@ -29,6 +29,10 @@ user: root
 
 password: 1234
 
+## Migration
+
+No projeto Ms.Onboarding, dentro do Paackage Manager Console rodar o comando "Update-Database" com o Default project "Data"
+
 ## Regras de Negócios
 
 - Ao adicionar uma nova tarefa inserimos a descrição e a data de inclusão, bem com o status de nova tarefa são automáticas.
