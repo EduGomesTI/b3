@@ -29,7 +29,7 @@ namespace B3.Ms.Onboarding.Domain.Aggregates.ToDos.Entities
         {
             Id = id;
 
-            ChangeDescription(description);
+            ChangeDescription(description);            
         }
 
         public ToDo(string description)

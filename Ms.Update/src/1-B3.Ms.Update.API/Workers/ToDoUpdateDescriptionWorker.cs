@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace B3.Ms.Update.API.Workers;
+namespace B3.Ms.Update.Worker.Workers;
 
 public class ToDoUpdateDescriptionWorker : BackgroundService
 {
@@ -49,7 +49,7 @@ public class ToDoUpdateDescriptionWorker : BackgroundService
     #region Methods
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
-    { 
+    {
         var consumer = new EventingBasicConsumer(_channel);
 
         consumer.Received += (sender, eventArgs) =>
@@ -57,7 +57,7 @@ public class ToDoUpdateDescriptionWorker : BackgroundService
             var contentArray = eventArgs.Body.ToArray();
             var contentString = Encoding.UTF8.GetString(contentArray);
             var message = JsonConvert.DeserializeObject<ToDoUpdateStatusRequest>(contentString);
-       
+
             _service.Update(message, stoppingToken);
 
             _channel.BasicAck(eventArgs.DeliveryTag, false);
@@ -67,7 +67,7 @@ public class ToDoUpdateDescriptionWorker : BackgroundService
 
         return Task.CompletedTask.WaitAsync(stoppingToken);
     }
-      
+
 
     #endregion
 
