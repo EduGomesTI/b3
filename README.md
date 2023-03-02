@@ -48,7 +48,7 @@ No projeto Ms.Onboarding, dentro do Paackage Manager Console rodar o comando "Up
 
 ## Próximas Atividades
 
-- Testes unitários
+- ~Testes unitários~
 - Impedir que o status de uma tarefa retroceda.
 - Melhorar a alteração de status de tarefas.
 - Implementar a atualização da descrição de uma tarefa.
